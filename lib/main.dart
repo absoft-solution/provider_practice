@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:provider_practice/provider/count_provider.dart';
 import 'package:provider_practice/provider/example_one_provider.dart';
 import 'package:provider_practice/provider/fav_provider.dart';
-import 'package:provider_practice/screen/fav_screen.dart';
+import 'package:provider_practice/provider/theme_provider.dart';
+
+import 'package:provider_practice/screen/theme_changer_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,15 +27,25 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => FavProvider(),
         ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+        ChangeNotifierProvider(
+          create: (_) => ThemeProvider(),
         ),
-        home: const FavScreen(),
-      ),
+      ],
+      child: Builder(builder: (BuildContext context) {
+        final themeChanger = Provider.of<ThemeProvider>(context);
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          themeMode: themeChanger.themeMode,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            brightness: Brightness.light,
+            primarySwatch: Colors.purple,
+          ),
+          darkTheme: ThemeData(
+              brightness: Brightness.light, primarySwatch: Colors.blue),
+          home: const ThemeChangerScreen(),
+        );
+      }),
     );
   }
 }
