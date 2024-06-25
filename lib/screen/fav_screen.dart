@@ -50,7 +50,7 @@ class _FavScreenState extends State<FavScreen> {
                         },
                         title: Text("Item No. $index"),
                         trailing: Icon(value.selectedItems.contains(index)
-                            ? Icons.favorite
+                            ? Icons.favorite_border
                             : Icons.favorite_border_outlined),
                       );
                     },
