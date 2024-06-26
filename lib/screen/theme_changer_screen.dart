@@ -15,34 +15,37 @@ class _ThemeChangerScreenState extends State<ThemeChangerScreen> {
     print("BBBB");
     final themeChanger = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amber.shade200,
-        centerTitle: true,
-        title: const Text("Theme Changer App"),
-      ),
-      body: Column(
-        children: [
-          RadioListTile<ThemeMode>(
-            title: Text("Light Mode"),
-            value: ThemeMode.light,
-            groupValue: themeChanger.themeMode,
-            onChanged:
-                themeChanger.setTheme, // Ensure proper calling of setTheme
-          ),
-          RadioListTile<ThemeMode>(
-            title: Text("Dark Theme"),
-            value: ThemeMode.dark,
-            groupValue: themeChanger.themeMode,
-            onChanged: themeChanger.setTheme,
-          ),
-          RadioListTile<ThemeMode>(
-            title: Text("System Default"),
-            value: ThemeMode.system,
-            groupValue: themeChanger.themeMode,
-            onChanged: themeChanger.setTheme,
-          ),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: Colors.amber.shade200,
+          centerTitle: true,
+          title: const Text("Theme Changer App"),
+        ),
+        body: Center(
+          child: Consumer<ThemeProvider>(builder: (context, value, child) {
+            return Column(
+              children: [
+                RadioListTile<ThemeMode>(
+                  title: Text("Light Mode"),
+                  value: ThemeMode.light,
+                  groupValue: value.themeMode,
+                  onChanged:
+                      value.setTheme, // Ensure proper calling of setTheme
+                ),
+                RadioListTile<ThemeMode>(
+                  title: Text("Dark Theme"),
+                  value: ThemeMode.dark,
+                  groupValue: value.themeMode,
+                  onChanged: value.setTheme,
+                ),
+                RadioListTile<ThemeMode>(
+                  title: Text("System Default"),
+                  value: ThemeMode.system,
+                  groupValue: value.themeMode,
+                  onChanged: value.setTheme,
+                ),
+              ],
+            );
+          }),
+        ));
   }
 }

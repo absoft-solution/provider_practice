@@ -4,7 +4,8 @@ import 'package:provider_practice/provider/count_provider.dart'; // Assuming you
 import 'package:provider_practice/provider/example_one_provider.dart';
 import 'package:provider_practice/provider/fav_provider.dart';
 import 'package:provider_practice/provider/theme_provider.dart';
-import 'package:provider_practice/screen/theme_changer_screen.dart';
+
+import 'package:provider_practice/screen/value_notify_listner.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.dark,
             primarySwatch: Colors.blue,
           ),
-          home: const ThemeChangerScreen(),
+          home: NotifyListenerScreen(),
         );
       }),
     );
